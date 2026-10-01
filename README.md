@@ -83,6 +83,29 @@ python render.py   # render slice frames; ffmpeg assembles the mp4s
 - `addLayers` is off and high-Reynolds wall functions are used, so near-wall momentum and
   heat transfer are under-resolved — adequate for this baseline, a target for refinement.
 
+## Extended transient (0–200 s)
+
+A longer run (`endTime 200`, writing every 2 s) was carried out to let the flow
+develop. The flow **structure** settles early (a narrow cold jet descending from
+the cassette to the floor), but the room does **not** reach thermal steady state:
+the room-mean temperature keeps climbing (~19.8 → 20.3 °C) while the return runs
+only ~0.75 °C above the 16 °C supply — about 1.6 °C below the ~18.3 °C a
+fully-mixed room would give. That gap is the signature of **short-circuiting**:
+with the supply ring and return concentric in the ceiling, much of the cold jet
+returns to the central outlet without mixing into the occupied zone, so the room
+sheds its ~609 W load inefficiently. This points at the return location / diffuser
+throw as the first design lever, and makes a clean next parametric study.
+
+![Room thermal response 0–200 s](docs/img/flow_history.png)
+
+Animation (temperature + velocity, each with streamlines on the y = 2.25 m plane):
+[`HVAC_flow_t200.mp4`](HVAC_flow_t200.mp4). Full history: [`docs/flow_history.csv`](docs/flow_history.csv).
+
+> Note: this extended run used the current ESI OpenFOAM build with the Courant
+> limit relaxed to 6 for throughput, so it is visualisation-grade rather than
+> bit-identical to a strict Co≤2 v2012 solve; the qualitative flow and the
+> short-circuit finding are robust to that.
+
 ## How this was built
 
 The geometry, mesh, case setup, solver runs, post-processing and the report were developed
