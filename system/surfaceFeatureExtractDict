@@ -1,0 +1,33 @@
+FoamFile
+{
+    version 2.0; format ascii; class dictionary; object surfaceFeatureExtractDict;
+}
+
+person_1.stl
+{
+    extractionMethod extractFromSurface;
+    extractFromSurfaceCoeffs { includedAngle 150; }
+    writeObj yes;
+}
+
+person_2.stl
+{
+    extractionMethod extractFromSurface;
+    extractFromSurfaceCoeffs { includedAngle 150; }
+    writeObj yes;
+}
+
+person_3.stl
+{
+    extractionMethod extractFromSurface;
+    extractFromSurfaceCoeffs { includedAngle 150; }
+    writeObj yes;
+}
+
+equipment.stl
+{
+    extractionMethod extractFromSurface;
+    extractFromSurfaceCoeffs { includedAngle 150; }
+    writeObj yes;
+}
+

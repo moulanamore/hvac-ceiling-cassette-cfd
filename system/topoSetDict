@@ -1,0 +1,16 @@
+FoamFile
+{
+    version 2.0; format ascii; class dictionary; object topoSetDict;
+}
+
+actions
+(
+    { name roofDiff;    type faceSet; action new;    source boundaryToFace; }
+    { name roofDiff;    type faceSet; action subset; source boxToFace; sourceInfo { box (2.33 1.83 2.60) (3.17 2.67 3.40); } }
+    { name outletFaces; type faceSet; action new;    source boundaryToFace; }
+    { name outletFaces; type faceSet; action subset; source boxToFace; sourceInfo { box (2.55 2.05 2.60) (2.95 2.45 3.40); } }
+    { name supplyFaces; type faceSet; action new;    source faceToFace; sourceInfo { set roofDiff; } }
+    { name supplyFaces; type faceSet; action delete; source faceToFace; sourceInfo { set outletFaces; } }
+    { name windowFaces; type faceSet; action new;    source boundaryToFace; }
+    { name windowFaces; type faceSet; action subset; source boxToFace; sourceInfo { box (1.55 -0.007 0.9) (3.95 0.007 2.4); } }
+);

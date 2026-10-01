@@ -1,0 +1,15 @@
+/*--------------------------------*- C++ -*----------------------------------*/
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class dictionary;
+    location "constant";
+    object radiationProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+radiation       off;
+radiationModel  none;
+// To enable a simple grey model later:
+//   radiation on; radiationModel P1;  (add 0/G, solver G in fvSolution)

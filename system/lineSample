@@ -1,0 +1,19 @@
+lineSample
+{
+    type            sets;
+    libs            (sampling);
+    setFormat       raw;
+    interpolationScheme cellPoint;
+    fields          (T U);
+    sets
+    {
+        vline
+        {
+            type    uniform;
+            axis    xyz;
+            start   (1.5 2.25 0.03);
+            end     (1.5 2.25 3.30);
+            nPoints 120;
+        }
+    }
+}

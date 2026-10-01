@@ -1,0 +1,91 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class volScalarField;
+    location "0";
+    object alphat;
+}
+
+dimensions      [1 -1 -1 0 0 0 0];
+internalField   uniform 0;
+
+boundaryField
+{
+    floor
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    roof
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    wall_high
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    wall_low
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    wall_front
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    wall_back
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    person_1
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    person_2
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    person_3
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    equipment
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    window
+    {
+        type            compressible::alphatJayatillekeWallFunction;
+        Prt             0.85;
+        value           uniform 0;
+    }
+    supply
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+}

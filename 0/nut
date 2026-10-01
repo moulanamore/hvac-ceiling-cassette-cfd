@@ -1,0 +1,80 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class volScalarField;
+    location "0";
+    object nut;
+}
+
+dimensions      [0 2 -1 0 0 0 0];
+internalField   uniform 0;
+
+boundaryField
+{
+    floor
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    roof
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    wall_high
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    wall_low
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    wall_front
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    wall_back
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    person_1
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    person_2
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    person_3
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    equipment
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    window
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
+    supply
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+}

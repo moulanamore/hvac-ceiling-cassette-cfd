@@ -1,0 +1,19 @@
+# ---- OpenFOAM generated output (regenerate with ./Allmesh and ./Allrun) ----
+# Result time directories (keep 0/ which holds initial & boundary conditions)
+/[1-9]*/
+# Mesh — regenerated deterministically by ./Allmesh
+constant/polyMesh/
+constant/extendedFeatureEdgeMesh/
+# Solver and function-object logs
+log.*
+# Post-processing data and rendered animation frames
+postProcessing/
+frames/
+# ParaView stub
+*.foam
+
+# ---- OS / editor cruft ----
+.DS_Store
+Thumbs.db
+*~
+*.swp

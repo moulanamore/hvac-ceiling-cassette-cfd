@@ -1,0 +1,6 @@
+#!/bin/sh
+cd "${0%/*}" || exit 1
+./Allmesh
+renumberMesh -overwrite > log.renumberMesh 2>&1
+buoyantSimpleFoam > log.buoyantSimpleFoam 2>&1
+echo 'Solver finished. tail -f log.buoyantSimpleFoam to watch residuals.'

@@ -1,0 +1,10 @@
+#!/bin/sh
+cd "${0%/*}" || exit 1
+echo '==> 1 features'; if command -v surfaceFeatures >/dev/null 2>&1; then surfaceFeatures; else surfaceFeatureExtract; fi
+echo '==> 2 blockMesh';     blockMesh
+echo '==> 3 snappyHexMesh'; snappyHexMesh -overwrite
+echo '==> 4 topoSet';       topoSet
+echo '==> 5 createPatch';   createPatch -overwrite
+echo '==> 6 checkMesh (solver-relevant, default checks)'; checkMesh
+echo '--- optional strict view: checkMesh -allGeometry -allTopology ---'
+echo 'DONE. Inspect: touch case.foam'

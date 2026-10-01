@@ -1,0 +1,82 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class volScalarField;
+    location "0";
+    object k;
+}
+
+dimensions      [0 2 -2 0 0 0 0];
+internalField   uniform 0.0006;
+
+boundaryField
+{
+    floor
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    roof
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    wall_high
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    wall_low
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    wall_front
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    wall_back
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    person_1
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    person_2
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    person_3
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    equipment
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    window
+    {
+        type            kqRWallFunction;
+        value           uniform 0.0006;
+    }
+    supply
+    {
+        type            turbulentIntensityKineticEnergyInlet;
+        intensity       0.05;
+        value           uniform 0.0006;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.0006;
+        value           uniform 0.0006;
+    }
+}

@@ -1,0 +1,91 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class volScalarField;
+    location "0";
+    object T;
+}
+
+dimensions      [0 0 0 1 0 0 0];
+internalField   uniform 293;
+
+boundaryField
+{
+    floor
+    {
+        type            zeroGradient;
+    }
+    roof
+    {
+        type            zeroGradient;
+    }
+    wall_high
+    {
+        type            zeroGradient;
+    }
+    wall_low
+    {
+        type            zeroGradient;
+    }
+    wall_front
+    {
+        type            zeroGradient;
+    }
+    wall_back
+    {
+        type            zeroGradient;
+    }
+    person_1
+    {
+        type            externalWallHeatFluxTemperature;
+        mode            power;
+        Q               75;
+        kappaMethod     fluidThermo;
+        value           uniform 293;
+    }
+    person_2
+    {
+        type            externalWallHeatFluxTemperature;
+        mode            power;
+        Q               75;
+        kappaMethod     fluidThermo;
+        value           uniform 293;
+    }
+    person_3
+    {
+        type            externalWallHeatFluxTemperature;
+        mode            power;
+        Q               75;
+        kappaMethod     fluidThermo;
+        value           uniform 293;
+    }
+    equipment
+    {
+        type            externalWallHeatFluxTemperature;
+        mode            power;
+        Q               200;
+        kappaMethod     fluidThermo;
+        value           uniform 293;
+    }
+    window
+    {
+        type            externalWallHeatFluxTemperature;
+        mode            coefficient;
+        h               uniform 5.7;
+        Ta              uniform 313;
+        kappaMethod     fluidThermo;
+        value           uniform 293;
+    }
+    supply
+    {
+        type            fixedValue;
+        value           uniform 289;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 293;
+        value           uniform 293;
+    }
+}

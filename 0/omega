@@ -1,0 +1,82 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class volScalarField;
+    location "0";
+    object omega;
+}
+
+dimensions      [0 0 -1 0 0 0 0];
+internalField   uniform 0.5;
+
+boundaryField
+{
+    floor
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    roof
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    wall_high
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    wall_low
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    wall_front
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    wall_back
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    person_1
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    person_2
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    person_3
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    equipment
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    window
+    {
+        type            omegaWallFunction;
+        value           uniform 0.5;
+    }
+    supply
+    {
+        type            turbulentMixingLengthFrequencyInlet;
+        mixingLength    0.014;
+        value           uniform 0.5;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.5;
+        value           uniform 0.5;
+    }
+}

@@ -1,0 +1,80 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class volScalarField;
+    location "0";
+    object p_rgh;
+}
+
+dimensions      [1 -1 -2 0 0 0 0];
+internalField   uniform 100000;
+
+boundaryField
+{
+    floor
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    roof
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    wall_high
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    wall_low
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    wall_front
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    wall_back
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    person_1
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    person_2
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    person_3
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    equipment
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    window
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    supply
+    {
+        type            fixedFluxPressure;
+        value           uniform 100000;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 100000;
+    }
+}

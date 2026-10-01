@@ -1,0 +1,15 @@
+#!/bin/sh
+cd "${0%/*}" || exit 1
+echo '### wall heat flux (per-patch integrals) ###'
+postProcess -func wallHeatFlux -latestTime > log.wallHeatFlux 2>&1
+echo '### supply flow ###'
+postProcess -func "patchFlowRate(patch=supply)" -latestTime > log.flowSupply 2>&1
+echo '### outlet flow ###'
+postProcess -func "patchFlowRate(patch=outlet)" -latestTime > log.flowOutlet 2>&1
+echo '### outlet mean T ###'
+postProcess -func "patchAverage(patch=outlet,field=T)" -latestTime > log.Toutlet 2>&1
+echo '### supply mean T ###'
+postProcess -func "patchAverage(patch=supply,field=T)" -latestTime > log.Tsupply 2>&1
+echo '### vertical line sample ###'
+postProcess -func lineSample -latestTime > log.lineSample 2>&1
+echo 'POST DONE'

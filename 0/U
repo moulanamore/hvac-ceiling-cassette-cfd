@@ -1,0 +1,71 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class volVectorField;
+    location "0";
+    object U;
+}
+
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    floor
+    {
+        type            noSlip;
+    }
+    roof
+    {
+        type            noSlip;
+    }
+    wall_high
+    {
+        type            noSlip;
+    }
+    wall_low
+    {
+        type            noSlip;
+    }
+    wall_front
+    {
+        type            noSlip;
+    }
+    wall_back
+    {
+        type            noSlip;
+    }
+    person_1
+    {
+        type            noSlip;
+    }
+    person_2
+    {
+        type            noSlip;
+    }
+    person_3
+    {
+        type            noSlip;
+    }
+    equipment
+    {
+        type            noSlip;
+    }
+    window
+    {
+        type            noSlip;
+    }
+    supply
+    {
+        type            flowRateInletVelocity;
+        massFlowRate    0.26;
+        rhoInlet        1.2;
+        value           uniform (0 0 -0.4);
+    }
+    outlet
+    {
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+}

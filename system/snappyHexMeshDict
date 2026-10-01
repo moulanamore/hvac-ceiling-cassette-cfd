@@ -1,0 +1,81 @@
+FoamFile
+{
+    version 2.0; format ascii; class dictionary; object snappyHexMeshDict;
+}
+
+castellatedMesh true;
+snap true;
+addLayers false;
+
+geometry
+{
+    person_1.stl { type triSurfaceMesh; name person_1; }
+    person_2.stl { type triSurfaceMesh; name person_2; }
+    person_3.stl { type triSurfaceMesh; name person_3; }
+    equipment.stl { type triSurfaceMesh; name equipment; }
+    diffuser { type searchableBox; min (2.20 1.70 2.40); max (3.30 2.80 3.30); }
+}
+
+castellatedMeshControls
+{
+    maxLocalCells 2000000;
+    maxGlobalCells 8000000;
+    minRefinementCells 10;
+    nCellsBetweenLevels 3;
+    maxLoadUnbalance 0.10;
+    resolveFeatureAngle 30;
+    allowFreeStandingZoneFaces true;
+
+    features
+    (
+        { file "person_1.eMesh"; level 2; }
+        { file "person_2.eMesh"; level 2; }
+        { file "person_3.eMesh"; level 2; }
+        { file "equipment.eMesh"; level 2; }
+    );
+
+    refinementSurfaces
+    {
+        person_1 { level (2 2); patchInfo { type wall; } }
+        person_2 { level (2 2); patchInfo { type wall; } }
+        person_3 { level (2 2); patchInfo { type wall; } }
+        equipment { level (2 2); patchInfo { type wall; } }
+    }
+
+    refinementRegions
+    {
+        diffuser { mode inside; levels ((1E15 2)); }
+    }
+
+    locationInMesh (2.000 1.000 0.500);
+}
+
+snapControls
+{
+    nSmoothPatch 4;
+    tolerance 2.0;
+    nSolveIter 100;
+    nRelaxIter 5;
+    nFeatureSnapIter 10;
+    implicitFeatureSnap false;
+    explicitFeatureSnap true;
+    multiRegionFeatureSnap false;
+}
+
+addLayersControls
+{
+    relativeSizes true; expansionRatio 1.2; finalLayerThickness 0.3; minThickness 0.05;
+    layers {}
+    featureAngle 60; nRelaxIter 5; nSmoothSurfaceNormals 1; nSmoothNormals 3; nSmoothThickness 10;
+    maxFaceThicknessRatio 0.5; maxThicknessToMedialRatio 0.3; minMedialAxisAngle 90; nBufferCellsNoExtrude 1; nLayerIter 50;
+}
+
+meshQualityControls
+{
+    maxNonOrtho 65; maxBoundarySkewness 20; maxInternalSkewness 4; maxConcave 80;
+    minVol 1e-13; minTetQuality 1e-15; minArea -1; minTwist 0.02; minDeterminant 0.001;
+    minFaceWeight 0.05; minVolRatio 0.01; minTriangleTwist -1; nSmoothScale 4; errorReduction 0.75;
+    relaxed { maxNonOrtho 75; }
+}
+
+mergeTolerance 1e-6;
