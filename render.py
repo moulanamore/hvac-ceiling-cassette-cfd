@@ -2,7 +2,7 @@ import os, sys, numpy as np, vtk
 from vtk.util.numpy_support import vtk_to_numpy
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt, matplotlib.tri as mtri
-CASE=os.path.expanduser("~/mnt/HVAC_claude/room_hvac_case")
+CASE = os.path.dirname(os.path.abspath(__file__))  # repo root (this script lives here)
 tmin=float(sys.argv[1]); tmax=float(sys.argv[2])
 for d in ("frames/T","frames/U"): os.makedirs(CASE+"/"+d,exist_ok=True)
 r=vtk.vtkOpenFOAMReader(); r.SetFileName(CASE+"/room_hvac_case.foam")

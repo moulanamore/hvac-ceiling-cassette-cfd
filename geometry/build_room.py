@@ -3,8 +3,15 @@
 #  Single-floor sloping-roof room -> HVAC CFD geometry (v2)
 #  + ceiling cassette AC, + window wall patch, larger volume.
 #  FreeCAD Part workbench, parametric. Units: mm
-#  Run:  exec(open(r"C:\Users\moula\HVAC_claude\build_room.py").read())
+#  Run (FreeCAD Python console): exec(open("build_room.py").read())
 # ================================================================
+# =====================================================================
+#  HISTORICAL geometry generator (v2): builds the room shell, occupants,
+#  equipment, window and a PROTRUDING ceiling cassette as STLs. The committed
+#  case uses only the occupant/equipment obstacle STLs; the room shell and
+#  the ceiling diffuser are generated instead by blockMesh + topoSet
+#  (see ./Allmesh). Kept to document how the geometry was first created.
+# =====================================================================
 import os, math, glob
 import FreeCAD as App
 import Part
@@ -33,7 +40,7 @@ RET_H, IN_H, SUP_H = 200.0, 280.0, 380.0   # concentric half-sizes (OUT = CASS/2
 
 WIN_W, WIN_H, WIN_SILL = 2400.0, 1500.0, 900.0   # window on Y=0 wall
 
-BASE = r"C:\Users\moula\HVAC_claude"
+BASE = os.environ.get("HVAC_BASE", os.getcwd())  # set HVAC_BASE to control output location
 OUT  = os.path.join(BASE, "room_cfd_geometry")
 # ----------------------------------------------------------------
 

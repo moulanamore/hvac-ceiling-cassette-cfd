@@ -1,6 +1,17 @@
+# =====================================================================
+#  SUPERSEDED / HISTORICAL -- does NOT regenerate the committed case.
+#  This is the ORIGINAL assembly pipeline (all-STL snappyHexMesh, protruding
+#  ceiling cassette). The committed case was later reworked to a body-fitted
+#  blockMesh block with the sloped roof as the inclined top face, and the
+#  supply/outlet/window patches carved with topoSet + createPatch (this also
+#  fixed the near-cancelling-face-area ventilation-flux defect -- see report).
+#  To (re)build the mesh for the committed case, run ./Allmesh, not this.
+#  Kept for provenance / to show the pipeline evolution.
+# =====================================================================
 import os
-SRC  = os.path.expanduser("~/mnt/HVAC_claude/room_cfd_geometry")
-CASE = os.path.expanduser("~/mnt/HVAC_claude/room_hvac_case")
+CASE = os.environ.get("HVAC_CASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root
+SRC  = os.environ.get("HVAC_GEOM") or os.path.join(os.path.dirname(CASE), "room_cfd_geometry")
+
 TRI  = os.path.join(CASE, "constant/triSurface")
 SYS  = os.path.join(CASE, "system")
 for d in (TRI, SYS): os.makedirs(d, exist_ok=True)

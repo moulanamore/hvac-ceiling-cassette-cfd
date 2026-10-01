@@ -1,6 +1,10 @@
 #!/bin/sh
 cd "${0%/*}" || exit 1
+# Build the mesh (deterministic; regenerates constant/polyMesh)
 ./Allmesh
+# Renumber for bandwidth, then run the transient buoyant solver.
+# NOTE: the case is configured for buoyantPimpleFoam (see system/controlDict).
+# It is cold-started from a uniform 20 C / still-air field (0/).
 renumberMesh -overwrite > log.renumberMesh 2>&1
-buoyantSimpleFoam > log.buoyantSimpleFoam 2>&1
-echo 'Solver finished. tail -f log.buoyantSimpleFoam to watch residuals.'
+buoyantPimpleFoam        > log.buoyantPimpleFoam 2>&1
+echo 'Solver finished. tail -f log.buoyantPimpleFoam to watch residuals.'

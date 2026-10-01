@@ -2,7 +2,7 @@
 # Run:  & "C:\Program Files\ParaView 5.11.0\bin\pvbatch.exe" anim.py
 from paraview.simple import *
 import os
-CASE = "C:/Users/moula/HVAC_claude/room_hvac_case"
+CASE = os.path.dirname(os.path.abspath(__file__))  # repo root (this script lives here)
 
 foam = OpenFOAMReader(FileName=CASE + "/room_hvac_case.foam")
 foam.MeshRegions = ['internalMesh']
