@@ -1,0 +1,41 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createPatchDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Turn the 10 cassette face sets into named patches.
+// Supply slots -> type patch (velocity inlets, set per pattern case later).
+// Returns      -> type patch (outlets).
+// Remaining ceiling faces stay in the original 'ceiling' wall patch.
+
+pointSync false;
+
+patches
+(
+    // cassette 1
+    { name c1_return; patchInfo { type patch; } constructFrom set; set c1_return; }
+    { name c1_east;   patchInfo { type patch; } constructFrom set; set c1_east;   }
+    { name c1_west;   patchInfo { type patch; } constructFrom set; set c1_west;   }
+    { name c1_north;  patchInfo { type patch; } constructFrom set; set c1_north;  }
+    { name c1_south;  patchInfo { type patch; } constructFrom set; set c1_south;  }
+
+    // cassette 2
+    { name c2_return; patchInfo { type patch; } constructFrom set; set c2_return; }
+    { name c2_east;   patchInfo { type patch; } constructFrom set; set c2_east;   }
+    { name c2_west;   patchInfo { type patch; } constructFrom set; set c2_west;   }
+    { name c2_north;  patchInfo { type patch; } constructFrom set; set c2_north;  }
+    { name c2_south;  patchInfo { type patch; } constructFrom set; set c2_south;  }
+);
+
+// ************************************************************************* //

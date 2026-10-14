@@ -1,0 +1,8 @@
+FoamFile { version 2.0; format ascii; class dictionary; object fvOptions; }
+heatSource
+{
+    type            scalarSemiImplicitSource;
+    selectionMode   all;
+    volumeMode      absolute;
+    injectionRateSuSp { h (12000 0); }   // 12 kW sensible load (~100 W/m2)
+}

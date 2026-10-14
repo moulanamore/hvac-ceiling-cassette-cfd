@@ -1,0 +1,19 @@
+FoamFile { version 2.0; format ascii; class volVectorField; object U; }
+dimensions [0 1 -1 0 0 0 0];
+internalField uniform (0 0 0);
+boundaryField
+{
+    floor   { type noSlip; }
+    ceiling { type noSlip; }
+    walls   { type noSlip; }
+    c1_east  { type fixedValue; value uniform ( 1.0 0 -2.83); }
+    c1_west  { type fixedValue; value uniform (-1.0 0 -2.83); }
+    c1_north { type fixedValue; value uniform (0  1.0 -2.83); }
+    c1_south { type fixedValue; value uniform (0 -1.0 -2.83); }
+    c2_east  { type fixedValue; value uniform ( 1.0 0 -2.83); }
+    c2_west  { type fixedValue; value uniform (-1.0 0 -2.83); }
+    c2_north { type fixedValue; value uniform (0  1.0 -2.83); }
+    c2_south { type fixedValue; value uniform (0 -1.0 -2.83); }
+    c1_return { type inletOutlet; inletValue uniform (0 0 0); value uniform (0 0 0); }
+    c2_return { type inletOutlet; inletValue uniform (0 0 0); value uniform (0 0 0); }
+}

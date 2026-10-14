@@ -1,0 +1,19 @@
+FoamFile { version 2.0; format ascii; class volScalarField; object T; }
+dimensions [0 0 0 1 0 0 0];
+internalField uniform 297.15;
+boundaryField
+{
+    floor   { type zeroGradient; }
+    ceiling { type zeroGradient; }
+    walls { type zeroGradient; }   // walls hold ambient (load proxy)
+    c1_east { type fixedValue; value uniform 287.15; }
+    c1_west { type fixedValue; value uniform 287.15; }
+    c1_north { type fixedValue; value uniform 287.15; }
+    c1_south { type fixedValue; value uniform 287.15; }
+    c2_east { type fixedValue; value uniform 287.15; }
+    c2_west { type fixedValue; value uniform 287.15; }
+    c2_north { type fixedValue; value uniform 287.15; }
+    c2_south { type fixedValue; value uniform 287.15; }
+    c1_return { type inletOutlet; inletValue uniform 297.15; value uniform 297.15; }
+    c2_return { type inletOutlet; inletValue uniform 297.15; value uniform 297.15; }
+}

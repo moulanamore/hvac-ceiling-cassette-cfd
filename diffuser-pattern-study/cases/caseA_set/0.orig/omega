@@ -1,0 +1,19 @@
+FoamFile { version 2.0; format ascii; class volScalarField; object omega; }
+dimensions [0 0 -1 0 0 0 0];
+internalField uniform 1;
+boundaryField
+{
+    floor   { type omegaWallFunction; value uniform 1; }
+    ceiling { type omegaWallFunction; value uniform 1; }
+    walls   { type omegaWallFunction; value uniform 1; }
+    c1_east { type fixedValue; value uniform 31.9; }
+    c1_west { type fixedValue; value uniform 31.9; }
+    c1_north { type fixedValue; value uniform 31.9; }
+    c1_south { type fixedValue; value uniform 31.9; }
+    c2_east { type fixedValue; value uniform 31.9; }
+    c2_west { type fixedValue; value uniform 31.9; }
+    c2_north { type fixedValue; value uniform 31.9; }
+    c2_south { type fixedValue; value uniform 31.9; }
+    c1_return { type inletOutlet; inletValue uniform 1; value uniform 1; }
+    c2_return { type inletOutlet; inletValue uniform 1; value uniform 1; }
+}

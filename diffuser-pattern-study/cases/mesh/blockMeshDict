@@ -1,0 +1,89 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Large living hall: 12 (x) x 10 (y) x 4 (z) m.
+// Two 4-way ceiling cassettes at (3,5) and (9,5), faces on the z=4 ceiling.
+//
+// Mesh strategy: uniform 0.1 m in x and y (so cassette features at 0.1 m
+// granularity snap cleanly), graded in z so the ceiling band (where the
+// cassettes discharge) is fine and the bulk/floor is coarser.
+//
+//   x: 120 cells over 12 m  -> 0.10 m
+//   y: 100 cells over 10 m  -> 0.10 m
+//   z:  48 cells over  4 m, graded so top cells ~0.05 m, bottom ~0.11 m
+//       simpleGrading z = 0.45 (last/first size ratio) puts fine cells at
+//       the ceiling where the jets are born.
+//
+// Total ~576k cells. Feasible for transient buoyantPimpleFoam overnight on
+// 16 GB; snappy ceiling-refinement can be added later for the medium mesh.
+
+scale   1;
+
+vertices
+(
+    (0   0   0)     // 0
+    (12  0   0)     // 1
+    (12  10  0)     // 2
+    (0   10  0)     // 3
+    (0   0   4)     // 4
+    (12  0   4)     // 5
+    (12  10  4)     // 6
+    (0   10  4)     // 7
+);
+
+blocks
+(
+    // z-grading 0.45: cells get finer toward the ceiling (jets live there)
+    hex (0 1 2 3 4 5 6 7) (120 100 48) simpleGrading (1 1 0.45)
+);
+
+edges
+(
+);
+
+boundary
+(
+    floor
+    {
+        type wall;
+        faces ( (0 3 2 1) );
+    }
+
+    ceiling
+    {
+        // The cassette supply/return patches are carved out of this in Stage 2.
+        type wall;
+        faces ( (4 5 6 7) );
+    }
+
+    walls
+    {
+        type wall;
+        faces
+        (
+            (0 1 5 4)      // y = 0
+            (2 3 7 6)      // y = 10
+            (1 2 6 5)      // x = 12
+            (3 0 4 7)      // x = 0
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

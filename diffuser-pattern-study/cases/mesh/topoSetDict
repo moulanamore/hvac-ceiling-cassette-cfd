@@ -1,0 +1,65 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Carve two 4-way cassettes out of the ceiling.
+// Each: central return (0.4x0.4) + 4 directional supply slots (0.2 wide).
+// Method: take ceiling faces, intersect with a thin box over each feature.
+// Boxes span z in [3.94, 4.01] to grab the top (ceiling) faces only.
+
+actions
+(
+    // ---- master set: all ceiling faces -----------------------------------
+    { name ceilSet; type faceSet; action new; source patchToFace; patch ceiling; }
+
+    // ================= CASSETTE 1  centre (3,5) ===========================
+    // return (central 0.4x0.4)
+    { name c1_return; type faceSet; action new; source boxToFace; box (2.8 4.8 3.94)(3.2 5.2 4.01); }
+    { name c1_return; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    // east supply slot
+    { name c1_east; type faceSet; action new; source boxToFace; box (3.2 4.8 3.94)(3.4 5.2 4.01); }
+    { name c1_east; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    // west supply slot
+    { name c1_west; type faceSet; action new; source boxToFace; box (2.6 4.8 3.94)(2.8 5.2 4.01); }
+    { name c1_west; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    // north supply slot
+    { name c1_north; type faceSet; action new; source boxToFace; box (2.8 5.2 3.94)(3.2 5.4 4.01); }
+    { name c1_north; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    // south supply slot
+    { name c1_south; type faceSet; action new; source boxToFace; box (2.8 4.6 3.94)(3.2 4.8 4.01); }
+    { name c1_south; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    // ================= CASSETTE 2  centre (9,5) ===========================
+    { name c2_return; type faceSet; action new; source boxToFace; box (8.8 4.8 3.94)(9.2 5.2 4.01); }
+    { name c2_return; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    { name c2_east; type faceSet; action new; source boxToFace; box (9.2 4.8 3.94)(9.4 5.2 4.01); }
+    { name c2_east; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    { name c2_west; type faceSet; action new; source boxToFace; box (8.6 4.8 3.94)(8.8 5.2 4.01); }
+    { name c2_west; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    { name c2_north; type faceSet; action new; source boxToFace; box (8.8 5.2 3.94)(9.2 5.4 4.01); }
+    { name c2_north; type faceSet; action subset; source faceToFace; set ceilSet; }
+
+    { name c2_south; type faceSet; action new; source boxToFace; box (8.8 4.6 3.94)(9.2 4.8 4.01); }
+    { name c2_south; type faceSet; action subset; source faceToFace; set ceilSet; }
+);
+
+// ************************************************************************* //
