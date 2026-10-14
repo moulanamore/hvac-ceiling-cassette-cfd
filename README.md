@@ -1,3 +1,25 @@
+# HVAC Ceiling-Cassette CFD
+
+OpenFOAM studies of ceiling-cassette air-conditioning. This repository now contains **two** studies — the featured one below, and the original single-room study further down.
+
+## ⭐ Featured — Diffuser-Pattern Setpoint Study (large hall)
+
+**Does the AC reach every corner — capacity problem or distribution problem?** A transient study that holds cooling capacity fixed and varies only the supply-diffuser pattern. The answer: **pattern, not capacity, decides coverage.**
+
+[![Comfort coverage by pattern](diffuser-pattern-study/thesis/figs/cmp_coverage_panel.png)](diffuser-pattern-study/)
+
+| Pattern | Occupied mean | Cooling delivered | Comfort coverage |
+|---|---|---|---|
+| Baseline (radial) | **24.4 °C** | **11.6 kW** | **89 %** |
+| Steep | 27.1 °C | 8.2 kW | 68 % |
+| Swirl | 27.9 °C | 6.2 kW | 4 % |
+
+*Identical airflow (1.81 m³/s) and 12 kW load; the swirl/steep patterns short-circuit cold supply back to the return.*
+
+➡️ **[Read the full illustrated study](diffuser-pattern-study/)** · [thesis PDF](diffuser-pattern-study/thesis/hall_diffuser_thesis.pdf) · [interactive dashboard](diffuser-pattern-study/deliverables/hall_diffuser_setpoint_dashboard.html)
+
+---
+
 # HVAC CFD — Ceiling-Cassette-Cooled Room
 
 Buoyancy-driven CFD of a single-storey, sloped-roof room cooled by a ceiling-cassette
